@@ -1,0 +1,17 @@
+<form action="/clubs/rank/" method="post">
+    <h1>Club Rankings</h1>
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}! You can rank your clubs using this form.</p>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+        <h2>Current rankings:</h2>
+        {% for ranking in ranks %}
+            <p>{{ ranking.rank }}: {{ ranking.club.name }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Log in or sign up here.</p>
+        <a href="{% url 'login' %}">login</a>
+        <a href="/clubs/signup">signup</a>
+    {% endif %}
+</form>

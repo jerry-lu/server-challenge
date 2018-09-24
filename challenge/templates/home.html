@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Welcome to PennClubReview!</h1>
+  Hi {{ user.username }}!
+  <p><a href="{% url 'clubs:rank' %}">Rank your clubs</a></p>     
+  <p><a href="{% url 'clubs:create' %}">Create a club</a></p>     
+  <p><a href="{% url 'logout' %}">Log out</a></p>
+{% else %}
+  <h1>Welcome to PennClubReview!</h1>
+  <p>PennClubReview is a website where students can rank their favorite clubs!</p>
+  <p><a href="{% url 'login' %}">Log in</a> or <a href="/clubs/signup">sign up</a> here.</p>
+{% endif %}
+{% endblock %}
